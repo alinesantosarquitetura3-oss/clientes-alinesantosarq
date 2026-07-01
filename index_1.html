@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AS ARQ — Painel de Clientes</title>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+<style>
+  :root{--bg:#FAF7F2;--ink:#2A241D;--line:#E3DACB;--card:#FFFFFF;--accent:#A8763E;--muted:#8A8070;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Georgia','Iowan Old Style',serif;padding:32px 24px 80px;}
+  .wrap{max-width:980px;margin:0 auto;}
+  header{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:24px;flex-wrap:wrap;gap:12px;}
+  h1{font-size:26px;margin:0;letter-spacing:0.5px;font-weight:600;}
+  h1 span{color:var(--accent);font-style:italic;}
+  .sub{font-family:Arial,sans-serif;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+  .status-bar{font-family:Arial,sans-serif;font-size:12px;padding:6px 12px;border-radius:3px;margin-bottom:14px;display:inline-flex;align-items:center;gap:6px;}
+  .status-bar.online{background:#eafaf1;color:#2d7a4f;border:1px solid #b2dfca;}
+  .status-bar.offline{background:#fef9e7;color:#9a6700;border:1px solid #f0d98a;}
+  .status-bar.loading{background:#f0f0f0;color:#777;border:1px solid #ddd;}
+  .dot{width:7px;height:7px;border-radius:50%;display:inline-block;}
+  .dot.green{background:#2d7a4f;}.dot.yellow{background:#f0a500;}.dot.grey{background:#aaa;}
+  .toolbar{display:flex;gap:10px;margin-bottom:18px;font-family:Arial,sans-serif;flex-wrap:wrap;align-items:center;}
+  button{font-family:Arial,sans-serif;font-size:13px;border:1px solid var(--ink);background:var(--ink);color:#fff;padding:9px 16px;border-radius:3px;cursor:pointer;}
+  button.secondary{background:transparent;color:var(--ink);}
+  button:hover{opacity:0.85;}
+  table{width:100%;border-collapse:collapse;background:var(--card);box-shadow:0 1px 3px rgba(0,0,0,0.06);}
+  th{font-family:Arial,sans-serif;text-transform:uppercase;font-size:11px;letter-spacing:0.8px;color:var(--muted);text-align:left;padding:10px 12px;border-bottom:2px solid var(--ink);}
+  td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:middle;font-size:14px;}
+  tr:last-child td{border-bottom:none;}
+  td input[type=text]{width:100%;border:none;background:transparent;font-family:Georgia,serif;font-size:14px;padding:4px 2px;}
+  td input[type=text]:focus{outline:1px solid var(--accent);border-radius:2px;background:#fffdf9;}
+  .resp-cell{display:flex;align-items:center;gap:6px;}
+  .tag{font-family:Arial,sans-serif;font-size:12px;font-weight:600;color:#fff;padding:4px 10px;border-radius:20px;display:inline-block;min-width:64px;text-align:center;cursor:pointer;}
+  select.resp-select{border:none;background:transparent;font-family:Arial,sans-serif;font-size:12px;cursor:pointer;}
+  .del{background:transparent;border:none;color:var(--muted);font-size:16px;cursor:pointer;padding:0 6px;}
+  .del:hover{color:#b33;}
+  .empty{text-align:center;padding:40px;color:var(--muted);font-family:Arial,sans-serif;font-size:13px;}
+  footer{text-align:center;margin-top:24px;font-family:Arial,sans-serif;font-size:11px;color:var(--muted);}
+  .legend{display:flex;gap:8px;flex-wrap:wrap;font-family:Arial,sans-serif;font-size:11px;color:var(--muted);margin-top:14px;align-items:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>AS <span>ARQ</span> — Painel de Clientes</h1>
+      <div class="sub">Andamento · Demandas · Responsáveis</div>
+    </div>
+  </header>
+
+  <div class="status-bar loading" id="statusBar">
+    <span class="dot grey" id="statusDot"></span>
+    <span id="statusText">Conectando...</span>
+  </div>
+
+  <div class="toolbar">
+    <button id="addBtn">+ Novo cliente</button>
+    <button class="secondary" id="exportBtn">Exportar (.csv)</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:18%">Cliente</th>
+        <th style="width:42%">Demanda</th>
+        <th style="width:14%">Data</th>
+        <th style="width:20%">Responsável</th>
+        <th style="width:6%"></th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+  <div class="empty" id="emptyMsg" style="display:none;">Nenhum cliente em andamento. Clique em "+ Novo cliente" para começar.</div>
+
+  <div class="legend" id="legend"></div>
+
+  <footer>AS ARQ · dados sincronizados em tempo real via Firebase</footer>
+</div>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyC8Cv9xOpbVEKGf9ur_xNtvr9QdvF-3Rjy",
+  authDomain: "clientes-alinesantosarq.firebaseapp.com",
+  databaseURL: "https://clientes-alinesantosarq-default-rtdb.firebaseio.com",
+  projectId: "clientes-alinesantosarq",
+  storageBucket: "clientes-alinesantosarq.firebasestorage.app",
+  messagingSenderId: "161829327755",
+  appId: "1:1618293277755:web:1a2b28be8ed4c50663958e"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+const ref = db.ref("clientes");
+
+const RESP_OPTIONS = [
+  { name: "Aline",            color: "#A8763E" },
+  { name: "Julia",            color: "#7B3FA0" },
+  { name: "Fabiana",          color: "#3F8F5B" },
+  { name: "Fabiana e Julia",  color: "#3F8F5B" },
+  { name: "Fabiana e Mat.",   color: "#3F8F5B" },
+  { name: "Aline e Fabiana",  color: "#D4A017" },
+  { name: "—",                color: "#A39C8C" }
+];
+
+const DADOS_INICIAIS = [
+  {cliente:"Abadia - Atenas",demanda:"Lançar levantamento",data:"",resp:"Julia"},
+  {cliente:"Ademir",demanda:"Acompanhar finalização",data:"",resp:"—"},
+  {cliente:"Adriana",demanda:"Maquete adega",data:"",resp:"Julia"},
+  {cliente:"Ana Carolina",demanda:"Maquete e caderno Obra - acomp.",data:"",resp:"Fabiana e Mat."},
+  {cliente:"Caio e Francis",demanda:"Aguardando cliente",data:"",resp:"Aline e Fabiana"},
+  {cliente:"Carlos Henrique",demanda:"Assinaturas com problema",data:"30/jun",resp:"Fabiana"},
+  {cliente:"CDL",demanda:"Ata de reunião, ajustes maquete e ajuste",data:"",resp:"Fabiana e Mat."},
+  {cliente:"Delio e Juliana",demanda:"Detalhamento final Gabriel",data:"",resp:"—"},
+  {cliente:"Dyego",demanda:"Tomadas",data:"30/jun",resp:"Fabiana"},
+  {cliente:"Grazy",demanda:"Ver outro orçamento de marcenaria",data:"",resp:"Julia"},
+  {cliente:"Heber e Cristiane",demanda:"Finalizando",data:"",resp:"—"},
+  {cliente:"Iolanda",demanda:"Em aprovação no condomínio - acomp.",data:"",resp:"Fabiana"},
+  {cliente:"Jardim Atlântico",demanda:"Acompanhar aprovação prefeitura",data:"",resp:"—"},
+  {cliente:"Léo e Rafa",demanda:"",data:"",resp:"Fabiana"},
+  {cliente:"Luira",demanda:"Levantamento - remarcar",data:"",resp:"Fabiana e Julia"},
+  {cliente:"Medi Saude",demanda:"???",data:"",resp:"Aline"},
+  {cliente:"Orion",demanda:"Detalhar marcenaria? Ver o q falta",data:"",resp:"—"},
+  {cliente:"Paulo Galpão",demanda:"Reunião feita, ajuste enviado - CUTUCAR",data:"",resp:"Aline e Fabiana"},
+  {cliente:"Portal Garden",demanda:"Priorizar mudanças salão de festas",data:"",resp:"Fabiana"},
+  {cliente:"Portal Garden - Análises",demanda:"",data:"",resp:"Julia"},
+  {cliente:"Rancho",demanda:"Fazer quantitativo",data:"",resp:"Fabiana"},
+  {cliente:"Raquel Piri",demanda:"Apresentar planta de ocupação",data:"",resp:"—"},
+  {cliente:"Sena Aires",demanda:"Parado - aguardando cliente",data:"",resp:"Julia"},
+  {cliente:"Sibele e Delson",demanda:"Mandar novo layout",data:"",resp:"Julia"},
+  {cliente:"Sicoob compat.",demanda:"Fazer nota e contrato",data:"01/jul",resp:"Fabiana"},
+  {cliente:"Sicoob detalhamento",demanda:"Começar caderno de det.",data:"",resp:"Fabiana"}
+];
+
+let data = [];
+
+function setStatus(state) {
+  const bar  = document.getElementById('statusBar');
+  const dot  = document.getElementById('statusDot');
+  const text = document.getElementById('statusText');
+  bar.className = "status-bar " + state;
+  dot.className = "dot " + (state==='online' ? 'green' : state==='offline' ? 'yellow' : 'grey');
+  text.textContent = state==='online'  ? "Conectado — alterações salvas em tempo real" :
+                     state==='offline' ? "Sem conexão — tentando reconectar..." :
+                                         "Conectando...";
+}
+
+ref.on('value', snapshot => {
+  setStatus('online');
+  const val = snapshot.val();
+  if (val) {
+    data = Object.entries(val)
+      .sort((a,b) => (a[1]._order||0) - (b[1]._order||0))
+      .map(([id, row]) => ({ _id: id, ...row }));
+  } else {
+    const obj = {};
+    DADOS_INICIAIS.forEach((row, i) => {
+      const id = ref.push().key;
+      obj[id] = { ...row, _order: i };
+    });
+    ref.set(obj);
+    return;
+  }
+  render();
+}, () => setStatus('offline'));
+
+function colorFor(name) {
+  const found = RESP_OPTIONS.find(r => r.name === name);
+  return found ? found.color : "#A39C8C";
+}
+
+function saveField(id, field, value) {
+  if (!id) return;
+  db.ref("clientes/" + id + "/" + field).set(value);
+}
+
+function render() {
+  const tbody = document.getElementById('tbody');
+  document.getElementById('emptyMsg').style.display = data.length === 0 ? "block" : "none";
+  tbody.innerHTML = "";
+
+  data.forEach(row => {
+    const tr = document.createElement('tr');
+
+    function makeInput(val, placeholder, field) {
+      const td  = document.createElement('td');
+      const inp = document.createElement('input');
+      inp.type = "text"; inp.value = val || ""; inp.placeholder = placeholder;
+      let t;
+      inp.addEventListener('input', e => {
+        clearTimeout(t);
+        t = setTimeout(() => saveField(row._id, field, e.target.value), 600);
+      });
+      td.appendChild(inp);
+      return td;
+    }
+
+    tr.appendChild(makeInput(row.cliente, "Nome do cliente", "cliente"));
+    tr.appendChild(makeInput(row.demanda, "O que precisa ser feito", "demanda"));
+    tr.appendChild(makeInput(row.data,    "ex: 30/jun", "data"));
+
+    const tdR  = document.createElement('td');
+    const cell = document.createElement('div'); cell.className = "resp-cell";
+    const tag  = document.createElement('span'); tag.className = "tag";
+    tag.style.background = colorFor(row.resp); tag.textContent = row.resp || "—";
+    const sel  = document.createElement('select'); sel.className = "resp-select"; sel.style.display = "none";
+    RESP_OPTIONS.forEach(opt => {
+      const o = document.createElement('option');
+      o.value = opt.name; o.textContent = opt.name;
+      if (opt.name === row.resp) o.selected = true;
+      sel.appendChild(o);
+    });
+    sel.addEventListener('change', e => saveField(row._id, 'resp', e.target.value));
+    tag.addEventListener('click',  () => { sel.style.display = "inline-block"; tag.style.display = "none"; sel.focus(); });
+    sel.addEventListener('blur',   () => { sel.style.display = "none"; tag.style.display = "inline-block"; });
+    cell.appendChild(tag); cell.appendChild(sel); tdR.appendChild(cell); tr.appendChild(tdR);
+
+    const tdX = document.createElement('td');
+    const del = document.createElement('button'); del.className = "del"; del.textContent = "✕";
+    del.addEventListener('click', () => {
+      if (confirm('Remover "' + (row.cliente||'este cliente') + '"?'))
+        db.ref("clientes/" + row._id).remove();
+    });
+    tdX.appendChild(del); tr.appendChild(tdX);
+    tbody.appendChild(tr);
+  });
+
+  renderLegend();
+}
+
+function renderLegend() {
+  const legend = document.getElementById('legend');
+  legend.innerHTML = "<span>Responsáveis:</span>";
+  RESP_OPTIONS.filter(r => r.name !== "—").forEach(r => {
+    const s = document.createElement('span');
+    s.style.cssText = "display:inline-flex;align-items:center;gap:4px;";
+    const d = document.createElement('span');
+    d.style.cssText = "width:8px;height:8px;border-radius:50%;background:" + r.color + ";display:inline-block;";
+    s.appendChild(d); s.appendChild(document.createTextNode(r.name));
+    legend.appendChild(s);
+  });
+}
+
+document.getElementById('addBtn').addEventListener('click', () => {
+  const nr = ref.push();
+  nr.set({ cliente:"", demanda:"", data:"", resp:"—", _order: Date.now() });
+  setTimeout(() => {
+    const inputs = document.querySelectorAll('#tbody tr:last-child input');
+    if (inputs[0]) inputs[0].focus();
+  }, 500);
+});
+
+document.getElementById('exportBtn').addEventListener('click', () => {
+  let csv = "Cliente,Demanda,Data,Responsavel\n";
+  data.forEach(row => {
+    const e = v => '"' + (v||"").replace(/"/g,'""') + '"';
+    csv += [e(row.cliente), e(row.demanda), e(row.data), e(row.resp)].join(",") + "\n";
+  });
+  const b = new Blob([csv], {type:"text/csv;charset=utf-8;"});
+  const u = URL.createObjectURL(b);
+  const a = document.createElement('a'); a.href = u; a.download = "as_arq_clientes.csv"; a.click();
+  URL.revokeObjectURL(u);
+});
+</script>
+</body>
+</html>
