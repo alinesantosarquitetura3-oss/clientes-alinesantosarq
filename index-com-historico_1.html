@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AS ARQ — Painel de Clientes</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,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
+bGlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSfvu78nIGlkPSdXNU0w
+TXBDZWhpSHpyZVN6TlRjemtjOWQnPz4NCjx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0
+YS8iPjxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYt
+c3ludGF4LW5zIyI+PHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9InV1aWQ6ZmFmNWJkZDUtYmEz
+ZC0xMWRhLWFkMzEtZDMzZDc1MTgyZjFiIiB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2Vs
+ZW1lbnRzLzEuMS8iPjxkYzpjcmVhdG9yPjxyZGY6U2VxIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53
+My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+PHJkZjpsaT5hbGluZSBzYW50b3M8L3Jk
+ZjpsaT48L3JkZjpTZXE+DQoJCQk8L2RjOmNyZWF0b3I+PC9yZGY6RGVzY3JpcHRpb24+PHJkZjpE
+ZXNjcmlwdGlvbiByZGY6YWJvdXQ9InV1aWQ6ZmFmNWJkZDUtYmEzZC0xMWRhLWFkMzEtZDMzZDc1
+MTgyZjFiIiB4bWxuczpleGlmPSJodHRwOi8vbnMuYWRvYmUuY29tL2V4aWYvMS4wLyI+PGV4aWY6
+RGF0ZVRpbWVPcmlnaW5hbD4yMDI2LTA1LTE3VDE5OjMzOjI5LjY5NTwvZXhpZjpEYXRlVGltZU9y
+aWdpbmFsPjwvcmRmOkRlc2NyaXB0aW9uPjxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSJ1dWlk
+OmZhZjViZGQ1LWJhM2QtMTFkYS1hZDMxLWQzM2Q3NTE4MmYxYiIgeG1sbnM6eG1wPSJodHRwOi8v
+bnMuYWRvYmUuY29tL3hhcC8xLjAvIj48eG1wOkNyZWF0ZURhdGU+MjAyNi0wNS0xN1QxOTozMzoy
+OS42OTU8L3htcDpDcmVhdGVEYXRlPjwvcmRmOkRlc2NyaXB0aW9uPjwvcmRmOlJERj48L3g6eG1w
+bWV0YT4NCjw/eHBhY2tldCBlbmQ9J3cnPz42f4AKAAAAIXRFWHRDcmVhdGlvbiBUaW1lADIwMjY6
+MDU6MTcgMTk6MzM6MjlPPn6eAAB2G0lEQVR4Xu3dTZATV7Yv+rVSohDxIu6pBsyhR10o4sbBg4ou
+spUpeeRi8KLxyMWoYdTw7qDNyDBqewQeYY8oTx70iPLI+jqiHAxMR9xXcEZdB1fh">
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+<style>
+  :root{--bg:#FAF7F2;--ink:#2A241D;--line:#E3DACB;--card:#FFFFFF;--accent:#A8763E;--muted:#8A8070;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Georgia','Iowan Old Style',serif;padding:32px 24px 80px;}
+  .wrap{max-width:980px;margin:0 auto;}
+  header{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:24px;flex-wrap:wrap;gap:12px;}
+  h1{font-size:26px;margin:0;letter-spacing:0.5px;font-weight:600;}
+  h1 span{color:var(--accent);font-style:italic;}
+  .sub{font-family:Arial,sans-serif;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+  .status-bar{font-family:Arial,sans-serif;font-size:12px;padding:6px 12px;border-radius:3px;margin-bottom:14px;display:inline-flex;align-items:center;gap:6px;}
+  .status-bar.online{background:#eafaf1;color:#2d7a4f;border:1px solid #b2dfca;}
+  .status-bar.offline{background:#fef9e7;color:#9a6700;border:1px solid #f0d98a;}
+  .status-bar.loading{background:#f0f0f0;color:#777;border:1px solid #ddd;}
+  .dot{width:7px;height:7px;border-radius:50%;display:inline-block;}
+  .dot.green{background:#2d7a4f;}.dot.yellow{background:#f0a500;}.dot.grey{background:#aaa;}
+  .toolbar{display:flex;gap:10px;margin-bottom:18px;font-family:Arial,sans-serif;flex-wrap:wrap;align-items:center;}
+  button{font-family:Arial,sans-serif;font-size:13px;border:1px solid var(--ink);background:var(--ink);color:#fff;padding:9px 16px;border-radius:3px;cursor:pointer;}
+  button.secondary{background:transparent;color:var(--ink);}
+  button:hover{opacity:0.85;}
+  table{width:100%;border-collapse:collapse;background:var(--card);box-shadow:0 1px 3px rgba(0,0,0,0.06);}
+  th{font-family:Arial,sans-serif;text-transform:uppercase;font-size:11px;letter-spacing:0.8px;color:var(--muted);text-align:left;padding:10px 12px;border-bottom:2px solid var(--ink);}
+  td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:middle;font-size:14px;}
+  tr:last-child td{border-bottom:none;}
+  td input[type=text]{width:100%;border:none;background:transparent;font-family:Georgia,serif;font-size:14px;padding:4px 2px;}
+  td input[type=text]:focus{outline:1px solid var(--accent);border-radius:2px;background:#fffdf9;}
+  .cliente-nome{cursor:pointer;color:var(--accent);text-decoration:underline;font-weight:500;}
+  .cliente-nome:hover{opacity:0.8;}
+  .resp-cell{display:flex;align-items:center;gap:6px;}
+  .tag{font-family:Arial,sans-serif;font-size:12px;font-weight:600;color:#fff;padding:4px 10px;border-radius:20px;display:inline-block;min-width:64px;text-align:center;cursor:pointer;}
+  select.resp-select{border:none;background:transparent;font-family:Arial,sans-serif;font-size:12px;cursor:pointer;}
+  .del{background:transparent;border:none;color:var(--muted);font-size:16px;cursor:pointer;padding:0 6px;}
+  .del:hover{color:#b33;}
+  .empty{text-align:center;padding:40px;color:var(--muted);font-family:Arial,sans-serif;font-size:13px;}
+  footer{text-align:center;margin-top:24px;font-family:Arial,sans-serif;font-size:11px;color:var(--muted);}
+  .legend{display:flex;gap:8px;flex-wrap:wrap;font-family:Arial,sans-serif;font-size:11px;color:var(--muted);margin-top:14px;align-items:center;}
+  
+  /* Modal Styles */
+  .modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:1000;align-items:center;justify-content:center;}
+  .modal-overlay.active{display:flex;}
+  .modal{background:var(--card);border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.15);max-width:700px;width:90%;max-height:90vh;overflow:hidden;display:flex;flex-direction:column;}
+  .modal-header{border-bottom:2px solid var(--line);padding:20px;display:flex;justify-content:space-between;align-items:center;}
+  .modal-header h2{margin:0;font-size:20px;}
+  .modal-close{background:none;border:none;font-size:24px;cursor:pointer;padding:0;color:var(--muted);}
+  .modal-close:hover{color:var(--ink);}
+  .modal-content{flex:1;overflow-y:auto;padding:20px;}
+  .historico-item{border-left:4px solid var(--accent);padding:12px;margin-bottom:16px;background:#fffdf9;border-radius:4px;}
+  .historico-time{font-family:Arial,sans-serif;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:4px;}
+  .historico-text{font-size:14px;margin-bottom:8px;}
+  .historico-imgs{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;}
+  .historico-img{width:80px;height:80px;border-radius:4px;cursor:pointer;object-fit:cover;}
+  .modal-footer{border-top:2px solid var(--line);padding:20px;display:flex;flex-direction:column;gap:12px;}
+  textarea{width:100%;border:1px solid var(--line);border-radius:4px;font-family:Georgia,serif;font-size:13px;padding:10px;resize:vertical;height:80px;}
+  textarea:focus{outline:1px solid var(--accent);background:#fffdf9;}
+  .upload-area{border:2px dashed var(--line);border-radius:4px;padding:16px;text-align:center;cursor:pointer;transition:all 0.3s;}
+  .upload-area:hover{border-color:var(--accent);background:#fffdf9;}
+  .upload-area.dragover{border-color:var(--accent);background:#fffdf9;}
+  .imgs-preview{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;}
+  .img-preview{width:60px;height:60px;border-radius:4px;object-fit:cover;position:relative;}
+  .btn-group{display:flex;gap:8px;}
+  .btn-group button{flex:1;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABFkAAAEECAYAAADzteuwAAAABGdBTUEAALGOfPtRkwAAACBjSFJN" alt="AS ARQ" style="height:60px;margin-right:20px;">
+    <div>
+      <h1>AS <span>ARQ</span> — Painel de Clientes</h1>
+      <div class="sub">Andamento · Demandas · Responsáveis</div>
+    </div>
+  </header>
+
+  <div class="status-bar loading" id="statusBar">
+    <span class="dot grey" id="statusDot"></span>
+    <span id="statusText">Conectando...</span>
+  </div>
+
+  <div class="toolbar">
+    <button id="addBtn">+ Novo cliente</button>
+    <button class="secondary" id="exportBtn">Exportar (.csv)</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:18%">Cliente</th>
+        <th style="width:42%">Demanda</th>
+        <th style="width:14%">Data</th>
+        <th style="width:20%">Responsável</th>
+        <th style="width:6%"></th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+  <div class="empty" id="emptyMsg" style="display:none;">Nenhum cliente em andamento. Clique em "+ Novo cliente" para começar.</div>
+
+  <div class="legend" id="legend"></div>
+
+  <footer>AS ARQ · dados sincronizados em tempo real via Firebase</footer>
+</div>
+
+<!-- Modal de Histórico -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Histórico — <span id="modalClienteName"></span></h2>
+      <button class="modal-close" id="modalClose">×</button>
+    </div>
+    <div class="modal-content" id="historicoContainer">
+      <!-- Histórico será renderizado aqui -->
+    </div>
+    <div class="modal-footer">
+      <div class="upload-area" id="uploadArea">
+        📸 Clique ou arraste imagens aqui
+        <input type="file" id="fileInput" accept="image/*" multiple style="display:none;">
+      </div>
+      <div class="imgs-preview" id="imgsPreview"></div>
+      <textarea id="notaInput" placeholder="Adicione uma anotação ao histórico..."></textarea>
+      <div class="btn-group">
+        <button class="secondary" id="btnCancelar">Cancelar</button>
+        <button id="btnSalvarNota">Salvar Anotação</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyC8Cv9xOpbVEKGf9ur_xNtvr9QdvF-3Rjy",
+  authDomain: "clientes-alinesantosarq.firebaseapp.com",
+  databaseURL: "https://clientes-alinesantosarq-default-rtdb.firebaseio.com",
+  projectId: "clientes-alinesantosarq",
+  storageBucket: "clientes-alinesantosarq.firebasestorage.app",
+  messagingSenderId: "161829327755",
+  appId: "1:1618293277755:web:1a2b28be8ed4c50663958e"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+const ref = db.ref("clientes");
+
+const RESP_OPTIONS = [
+  { name: "Aline",            color: "#A8763E" },
+  { name: "Julia",            color: "#7B3FA0" },
+  { name: "Fabiana",          color: "#3F8F5B" },
+  { name: "Fabiana e Julia",  color: "#3F8F5B" },
+  { name: "Fabiana e Mat.",   color: "#3F8F5B" },
+  { name: "Aline e Fabiana",  color: "#D4A017" },
+  { name: "—",                color: "#A39C8C" }
+];
+
+const DADOS_INICIAIS = [
+  {cliente:"Abadia - Atenas",demanda:"Lançar levantamento",data:"",resp:"Julia"},
+  {cliente:"Ademir",demanda:"Acompanhar finalização",data:"",resp:"—"},
+  {cliente:"Adriana",demanda:"Maquete adega",data:"",resp:"Julia"},
+  {cliente:"Ana Carolina",demanda:"Maquete e caderno Obra - acomp.",data:"",resp:"Fabiana e Mat."},
+  {cliente:"Caio e Francis",demanda:"Aguardando cliente",data:"",resp:"Aline e Fabiana"},
+  {cliente:"Carlos Henrique",demanda:"Assinaturas com problema",data:"30/jun",resp:"Fabiana"},
+  {cliente:"CDL",demanda:"Ata de reunião, ajustes maquete e ajuste",data:"",resp:"Fabiana e Mat."},
+  {cliente:"Delio e Juliana",demanda:"Detalhamento final Gabriel",data:"",resp:"—"},
+  {cliente:"Dyego",demanda:"Tomadas",data:"30/jun",resp:"Fabiana"},
+  {cliente:"Grazy",demanda:"Ver outro orçamento de marcenaria",data:"",resp:"Julia"},
+  {cliente:"Heber e Cristiane",demanda:"Finalizando",data:"",resp:"—"},
+  {cliente:"Iolanda",demanda:"Em aprovação no condomínio - acomp.",data:"",resp:"Fabiana"},
+  {cliente:"Jardim Atlântico",demanda:"Acompanhar aprovação prefeitura",data:"",resp:"—"},
+  {cliente:"Léo e Rafa",demanda:"",data:"",resp:"Fabiana"},
+  {cliente:"Luira",demanda:"Levantamento - remarcar",data:"",resp:"Fabiana e Julia"},
+  {cliente:"Medi Saude",demanda:"???",data:"",resp:"Aline"},
+  {cliente:"Orion",demanda:"Detalhar marcenaria? Ver o q falta",data:"",resp:"—"},
+  {cliente:"Paulo Galpão",demanda:"Reunião feita, ajuste enviado - CUTUCAR",data:"",resp:"Aline e Fabiana"},
+  {cliente:"Portal Garden",demanda:"Priorizar mudanças salão de festas",data:"",resp:"Fabiana"},
+  {cliente:"Portal Garden - Análises",demanda:"",data:"",resp:"Julia"},
+  {cliente:"Rancho",demanda:"Fazer quantitativo",data:"",resp:"Fabiana"},
+  {cliente:"Raquel Piri",demanda:"Apresentar planta de ocupação",data:"",resp:"—"},
+  {cliente:"Sena Aires",demanda:"Parado - aguardando cliente",data:"",resp:"Julia"},
+  {cliente:"Sibele e Delson",demanda:"Mandar novo layout",data:"",resp:"Julia"},
+  {cliente:"Sicoob compat.",demanda:"Fazer nota e contrato",data:"01/jul",resp:"Fabiana"},
+  {cliente:"Sicoob detalhamento",demanda:"Começar caderno de det.",data:"",resp:"Fabiana"}
+];
+
+let data = [];
+let clienteEmAberto = null;
+let imgsParaUpload = [];
+
+function setStatus(state) {
+  const bar  = document.getElementById('statusBar');
+  const dot  = document.getElementById('statusDot');
+  const text = document.getElementById('statusText');
+  bar.className = "status-bar " + state;
+  dot.className = "dot " + (state==='online' ? 'green' : state==='offline' ? 'yellow' : 'grey');
+  text.textContent = state==='online'  ? "Conectado — alterações salvas em tempo real" :
+                     state==='offline' ? "Sem conexão — tentando reconectar..." :
+                                         "Conectando...";
+}
+
+ref.on('value', snapshot => {
+  setStatus('online');
+  const val = snapshot.val();
+  if (val) {
+    data = Object.entries(val)
+      .sort((a,b) => (a[1].cliente||"").localeCompare(b[1].cliente||"", 'pt-BR'))
+      .map(([id, row]) => ({ _id: id, ...row }));
+  } else {
+    const obj = {};
+    DADOS_INICIAIS.forEach((row, i) => {
+      const id = ref.push().key;
+      obj[id] = { ...row };
+    });
+    ref.set(obj);
+    return;
+  }
+  render();
+}, () => setStatus('offline'));
+
+function colorFor(name) {
+  const found = RESP_OPTIONS.find(r => r.name === name);
+  return found ? found.color : "#A39C8C";
+}
+
+function saveField(id, field, value) {
+  if (!id) return;
+  db.ref("clientes/" + id + "/" + field).set(value);
+  
+  // Se mudou a demanda, registra no histórico
+  if (field === 'demanda' && value) {
+    const now = new Date();
+    const data = String(now.getDate()).padStart(2,'0') + '/' + String(now.getMonth()+1).padStart(2,'0');
+    const hora = String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0');
+    
+    db.ref("clientes/" + id + "/historico").push({
+      demanda: value,
+      data: data,
+      hora: hora,
+      timestamp: Date.now(),
+      tipo: 'auto'
+    });
+  }
+}
+
+function abrirHistorico(clienteId, clienteNome) {
+  clienteEmAberto = clienteId;
+  document.getElementById('modalClienteName').textContent = clienteNome;
+  document.getElementById('notaInput').value = '';
+  imgsParaUpload = [];
+  document.getElementById('imgsPreview').innerHTML = '';
+  
+  carregarHistorico(clienteId);
+  document.getElementById('modalOverlay').classList.add('active');
+}
+
+function carregarHistorico(clienteId) {
+  db.ref("clientes/" + clienteId + "/historico").once('value', snapshot => {
+    const hist = snapshot.val() || {};
+    const items = Object.entries(hist)
+      .map(([key, val]) => ({ ...val, _id: key }))
+      .sort((a,b) => b.timestamp - a.timestamp);
+    
+    const container = document.getElementById('historicoContainer');
+    if (items.length === 0) {
+      container.innerHTML = '<div style="text-align:center;color:var(--muted);padding:40px;font-size:13px;">Nenhuma anotação ainda. Adicione uma abaixo.</div>';
+    } else {
+      container.innerHTML = items.map(item => `
+        <div class="historico-item">
+          <div class="historico-time">${item.data} às ${item.hora}</div>
+          <div class="historico-text">${item.demanda}</div>
+          ${item.imagens ? `<div class="historico-imgs">${item.imagens.map((img, idx) => `<img src="${img}" class="historico-img" onclick="abrirImagemGrande('${img}')">`).join('')}</div>` : ''}
+        </div>
+      `).join('');
+    }
+  });
+}
+
+function abrirImagemGrande(src) {
+  const w = window.open();
+  w.document.write(`<img src="${src}" style="max-width:100%;height:auto;">`);
+}
+
+function salvarNota() {
+  const nota = document.getElementById('notaInput').value.trim();
+  if (!nota && imgsParaUpload.length === 0) {
+    alert('Adicione uma anotação ou imagem.');
+    return;
+  }
+  
+  const now = new Date();
+  const data = String(now.getDate()).padStart(2,'0') + '/' + String(now.getMonth()+1).padStart(2,'0');
+  const hora = String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0');
+  
+  const entry = {
+    demanda: nota,
+    data: data,
+    hora: hora,
+    timestamp: Date.now(),
+    tipo: 'manual'
+  };
+  
+  if (imgsParaUpload.length > 0) {
+    entry.imagens = imgsParaUpload;
+  }
+  
+  db.ref("clientes/" + clienteEmAberto + "/historico").push(entry, () => {
+    document.getElementById('notaInput').value = '';
+    imgsParaUpload = [];
+    document.getElementById('imgsPreview').innerHTML = '';
+    carregarHistorico(clienteEmAberto);
+  });
+}
+
+function render() {
+  const tbody = document.getElementById('tbody');
+  document.getElementById('emptyMsg').style.display = data.length === 0 ? "block" : "none";
+  tbody.innerHTML = "";
+
+  data.forEach(row => {
+    const tr = document.createElement('tr');
+
+    function makeInput(val, placeholder, field) {
+      const td  = document.createElement('td');
+      const inp = document.createElement('input');
+      inp.type = "text"; inp.value = val || ""; inp.placeholder = placeholder;
+      let t;
+      inp.addEventListener('input', e => {
+        clearTimeout(t);
+        t = setTimeout(() => saveField(row._id, field, e.target.value), 1200);
+      });
+      td.appendChild(inp);
+      return td;
+    }
+
+    // Cliente clicável
+    const tdCliente = document.createElement('td');
+    const clienteLink = document.createElement('span');
+    clienteLink.className = 'cliente-nome';
+    clienteLink.textContent = row.cliente || "(sem nome)";
+    clienteLink.addEventListener('click', () => abrirHistorico(row._id, row.cliente));
+    tdCliente.appendChild(clienteLink);
+    tr.appendChild(tdCliente);
+
+    tr.appendChild(makeInput(row.demanda, "O que precisa ser feito", "demanda"));
+    tr.appendChild(makeInput(row.data,    "ex: 30/jun", "data"));
+
+    const tdR  = document.createElement('td');
+    const cell = document.createElement('div'); cell.className = "resp-cell";
+    const tag  = document.createElement('span'); tag.className = "tag";
+    tag.style.background = colorFor(row.resp); tag.textContent = row.resp || "—";
+    const sel  = document.createElement('select'); sel.className = "resp-select"; sel.style.display = "none";
+    RESP_OPTIONS.forEach(opt => {
+      const o = document.createElement('option');
+      o.value = opt.name; o.textContent = opt.name;
+      if (opt.name === row.resp) o.selected = true;
+      sel.appendChild(o);
+    });
+    sel.addEventListener('change', e => saveField(row._id, 'resp', e.target.value));
+    tag.addEventListener('click',  () => { sel.style.display = "inline-block"; tag.style.display = "none"; sel.focus(); });
+    sel.addEventListener('blur',   () => { sel.style.display = "none"; tag.style.display = "inline-block"; });
+    cell.appendChild(tag); cell.appendChild(sel); tdR.appendChild(cell); tr.appendChild(tdR);
+
+    const tdX = document.createElement('td');
+    const del = document.createElement('button'); del.className = "del"; del.textContent = "✕";
+    del.addEventListener('click', () => {
+      if (confirm('Remover "' + (row.cliente||'este cliente') + '"?'))
+        db.ref("clientes/" + row._id).remove();
+    });
+    tdX.appendChild(del); tr.appendChild(tdX);
+    tbody.appendChild(tr);
+  });
+
+  renderLegend();
+}
+
+function renderLegend() {
+  const legend = document.getElementById('legend');
+  legend.innerHTML = "<span>Responsáveis:</span>";
+  RESP_OPTIONS.filter(r => r.name !== "—").forEach(r => {
+    const s = document.createElement('span');
+    s.style.cssText = "display:inline-flex;align-items:center;gap:4px;";
+    const d = document.createElement('span');
+    d.style.cssText = "width:8px;height:8px;border-radius:50%;background:" + r.color + ";display:inline-block;";
+    s.appendChild(d); s.appendChild(document.createTextNode(r.name));
+    legend.appendChild(s);
+  });
+}
+
+document.getElementById('addBtn').addEventListener('click', () => {
+  const nr = ref.push();
+  nr.set({ cliente:"", demanda:"", data:"", resp:"—" });
+  setTimeout(() => {
+    const inputs = document.querySelectorAll('#tbody tr:last-child input');
+    if (inputs[0]) inputs[0].focus();
+  }, 500);
+});
+
+document.getElementById('exportBtn').addEventListener('click', () => {
+  let csv = "Cliente,Demanda,Data,Responsavel\n";
+  data.forEach(row => {
+    const e = v => '"' + (v||"").replace(/"/g,'""') + '"';
+    csv += [e(row.cliente), e(row.demanda), e(row.data), e(row.resp)].join(",") + "\n";
+  });
+  const b = new Blob([csv], {type:"text/csv;charset=utf-8;"});
+  const u = URL.createObjectURL(b);
+  const a = document.createElement('a'); a.href = u; a.download = "as_arq_clientes.csv"; a.click();
+  URL.revokeObjectURL(u);
+});
+
+// Modal controls
+document.getElementById('modalClose').addEventListener('click', () => {
+  document.getElementById('modalOverlay').classList.remove('active');
+});
+
+document.getElementById('btnCancelar').addEventListener('click', () => {
+  document.getElementById('modalOverlay').classList.remove('active');
+});
+
+document.getElementById('btnSalvarNota').addEventListener('click', salvarNota);
+
+// Upload de imagens
+document.getElementById('uploadArea').addEventListener('click', () => {
+  document.getElementById('fileInput').click();
+});
+
+document.getElementById('fileInput').addEventListener('change', e => {
+  Array.from(e.target.files).forEach(file => {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      imgsParaUpload.push(event.target.result);
+      renderImgsPreview();
+    };
+    reader.readAsDataURL(file);
+  });
+});
+
+// Drag and drop
+document.getElementById('uploadArea').addEventListener('dragover', e => {
+  e.preventDefault();
+  document.getElementById('uploadArea').classList.add('dragover');
+});
+
+document.getElementById('uploadArea').addEventListener('dragleave', e => {
+  document.getElementById('uploadArea').classList.remove('dragover');
+});
+
+document.getElementById('uploadArea').addEventListener('drop', e => {
+  e.preventDefault();
+  document.getElementById('uploadArea').classList.remove('dragover');
+  Array.from(e.dataTransfer.files).forEach(file => {
+    if (file.type.startsWith('image/')) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        imgsParaUpload.push(event.target.result);
+        renderImgsPreview();
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+});
+
+function renderImgsPreview() {
+  const container = document.getElementById('imgsPreview');
+  container.innerHTML = imgsParaUpload.map((img, idx) => `
+    <div style="position:relative;display:inline-block;">
+      <img src="${img}" class="img-preview">
+      <button style="position:absolute;top:0;right:0;background:#b33;border:none;color:#fff;width:20px;height:20px;border-radius:50%;cursor:pointer;font-size:12px;padding:0;" onclick="imgsParaUpload.splice(${idx},1);renderImgsPreview();">×</button>
+    </div>
+  `).join('');
+}
+</script>
+</body>
+</html>
